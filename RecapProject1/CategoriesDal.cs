@@ -13,7 +13,10 @@ namespace RecapProject1
         {
             using (NorthWindContext context = new NorthWindContext())
             {
-                return context.Categories.ToList();
+                var categories = context.Categories.ToList();
+                categories.Insert(0, new Category { CategoryName = "Select", CategoryID = 0 });
+
+                return categories;
             }
         }
     

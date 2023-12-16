@@ -25,6 +25,24 @@ namespace RecapProject1
             }
         }
 
+        public List<Product> GetByName(string name,int categoryId)
+        {
+            using (NorthWindContext context = new NorthWindContext())
+            {
+                if (categoryId == 0)
+                {
+                    return context.Products.Where(p => p.ProductName.Contains(name)).ToList();
+
+                }
+                else
+                {
+                    return context.Products.Where(p => p.ProductName.Contains(name) && p.CategoryID == categoryId).ToList();
+
+                }
+
+
+            }
+        }
 
     }
 }

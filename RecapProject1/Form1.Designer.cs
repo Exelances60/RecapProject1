@@ -93,10 +93,11 @@
             // 
             // tbxSearch
             // 
-            this.tbxSearch.Location = new System.Drawing.Point(86, 25);
+            this.tbxSearch.Location = new System.Drawing.Point(71, 28);
             this.tbxSearch.Name = "tbxSearch";
             this.tbxSearch.Size = new System.Drawing.Size(163, 20);
             this.tbxSearch.TabIndex = 0;
+            this.tbxSearch.TextChanged += new System.EventHandler(this.tbxSearch_TextChanged);
             // 
             // dgwProduct
             // 

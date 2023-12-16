@@ -16,6 +16,7 @@ namespace RecapProject1
         ProductDal _productDal = new ProductDal();
         CategoriesDal _categoriesDal = new CategoriesDal();
 
+
         public void LoadAllProducts()
         {
             dgwProduct.DataSource = _productDal.GetAll();
@@ -43,14 +44,31 @@ namespace RecapProject1
 
         private void cbxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            MessageBox.Show(cbxCategory.SelectedIndex.ToString());
             if (cbxCategory.SelectedIndex == 0)
             {
                 LoadAllProducts();
+
             }
             else
             {
                 dgwProduct.DataSource = _productDal.GetByCategory(Convert.ToInt32(cbxCategory.SelectedValue));
             }
+        }
+
+        private void tbxSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(cbxCategory.SelectedValue) == 0)
+            {
+              LoadAllProducts();
+            }
+            else
+            {
+                dgwProduct.DataSource = _productDal.GetByName(tbxSearch.Text, Convert.ToInt32(cbxCategory.SelectedValue));
+            }
+            
+
+
         }
     }
 }
