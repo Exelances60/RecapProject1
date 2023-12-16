@@ -44,7 +44,6 @@ namespace RecapProject1
 
         private void cbxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(cbxCategory.SelectedIndex.ToString());
             if (cbxCategory.SelectedIndex == 0)
             {
                 LoadAllProducts();
