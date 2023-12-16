@@ -31,6 +31,24 @@ namespace RecapProject1
             cbxCategory.Text = "Select";
         }
 
+        public void LoadProductsByCategory(int categoryId)
+        {
+            dgwProduct.DataSource = _productDal.GetByCategory(categoryId);
+        }
+
+        public void LoadProductsByNameAndCategory(string name, int categoryId)
+        {
+            if (cbxCategory.SelectedIndex == 0)
+            {
+                dgwProduct.DataSource = _productDal.GetByName(name, 0);
+            }
+            else
+            {
+                dgwProduct.DataSource = _productDal.GetByName(name, categoryId);
+            }
+        }
+
+
         public Form1()
         {
             InitializeComponent();
@@ -51,23 +69,14 @@ namespace RecapProject1
             }
             else
             {
-                dgwProduct.DataSource = _productDal.GetByCategory(Convert.ToInt32(cbxCategory.SelectedValue));
+                LoadProductsByCategory(Convert.ToInt32(cbxCategory.SelectedValue));
             }
         }
 
         private void tbxSearch_TextChanged(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(cbxCategory.SelectedValue) == 0)
-            {
-               dgwProduct.DataSource = _productDal.GetByName(tbxSearch.Text, 0);
-            }
-            else
-            {
-                dgwProduct.DataSource = _productDal.GetByName(tbxSearch.Text, Convert.ToInt32(cbxCategory.SelectedValue));
-            }
-            
-
-
+            int categoryId = Convert.ToInt32(cbxCategory.SelectedValue);
+            LoadProductsByNameAndCategory(tbxSearch.Text, categoryId);
         }
     }
 }
