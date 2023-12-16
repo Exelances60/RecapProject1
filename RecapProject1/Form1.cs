@@ -21,6 +21,15 @@ namespace RecapProject1
             dgwProduct.DataSource = _productDal.GetAll();
         }
 
+        public void selectCategory()
+        {
+            cbxCategory.DataSource = _categoriesDal.GetAllCategory();
+            cbxCategory.DisplayMember = "CategoryName";
+            cbxCategory.ValueMember = "CategoryId";
+            cbxCategory.SelectedIndex = 0;
+            cbxCategory.Text = "Select";
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -29,11 +38,7 @@ namespace RecapProject1
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadAllProducts();
-            cbxCategory.DataSource = _categoriesDal.GetAllCategory();
-            cbxCategory.DisplayMember = "CategoryName";
-            cbxCategory.ValueMember = "CategoryId";
-            cbxCategory.SelectedIndex = 0;
-            cbxCategory.Text = "Select";
+            selectCategory();
         }
 
         private void cbxCategory_SelectedIndexChanged(object sender, EventArgs e)
