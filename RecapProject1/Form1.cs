@@ -59,7 +59,7 @@ namespace RecapProject1
         {
             if (Convert.ToInt32(cbxCategory.SelectedValue) == 0)
             {
-              LoadAllProducts();
+               dgwProduct.DataSource = _productDal.GetByName(tbxSearch.Text, 0);
             }
             else
             {
